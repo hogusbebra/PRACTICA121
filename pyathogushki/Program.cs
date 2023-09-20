@@ -11,6 +11,7 @@
 //    Console.Write(nums[i] + " ");
 //}
 
+
 using System;
 
 int[,] nums = new int[4, 4]
@@ -57,23 +58,6 @@ while (nums == nums)
             }
         }
     }
-    bool IsWinner(int[,] nums)
-    {
-        int n = 1;
-        for (int i = 0; i < nums.GetLength(0); i++)
-        {
-            for (int j = 0; j < nums.GetLength(1); j++)
-            {
-                if (nums[i, j] != n)
-                {
-                    return false;
-                }
-                n = (n + 1) % (w * h);
-            }
-        }
-        return true;
-    }
-
 
     if (Math.Abs(line3 - line4) + Math.Abs(tab3 - tab4) == 1)
     {
