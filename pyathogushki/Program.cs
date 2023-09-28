@@ -13,7 +13,6 @@
 
 
 using System;
-
 int[,] nums = new int[4, 4]
 {
     {1, 2, 3, 4},
@@ -21,12 +20,9 @@ int[,] nums = new int[4, 4]
     {9, 10, 11, 12},
     {13, 14, 15, 0}
 };
-
 Random random = new Random();
-
 int w = nums.GetLength(0);
 int h = nums.GetLength(1);
-
 int n = w * h;
 while (n > 1)
 {
@@ -36,8 +32,8 @@ while (n > 1)
     nums[n / h, n % h] = nums[k / h, k % h];
     nums[k / h, k % h] = temp;
 }
-
-while (true)
+bool isCorrectOrder = false; 
+while (!isCorrectOrder) 
 {
     for (int i = 0; i < w; i++)
     {
@@ -47,8 +43,7 @@ while (true)
         }
         Console.WriteLine();
     }
-
-    Console.WriteLine("На что скипаем?");
+    Console.WriteLine("Что двигаем на пустое(0)?");
     int b = Convert.ToInt32(Console.ReadLine());
 
     int line3 = -1, tab3 = -1;
@@ -70,7 +65,6 @@ while (true)
             }
         }
     }
-
     if ((Math.Abs(line3 - line4) == 1 && tab3 == tab4) || (Math.Abs(tab3 - tab4) == 1 && line3 == line4))
     {
         int temp = nums[line3, tab3];
@@ -81,5 +75,22 @@ while (true)
     {
         Console.WriteLine("Так нельзя");
     }
+    isCorrectOrder = CheckCorrectOrder(nums);
 }
-
+Console.WriteLine("Ура победа");
+bool CheckCorrectOrder(int[,] array)
+{
+    int value = 1;
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if (array[i, j] != value % (w * h))
+            {
+                return false;
+            }
+            value++;
+        }
+    }
+    return true;
+}
